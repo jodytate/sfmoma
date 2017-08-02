@@ -14,12 +14,7 @@ const getArt = (type, term) => {
   }
 };
 
-// as types you can request:
-// artists
-// artworks
-// exhibitions
-
-request(getArt('artists', 'Matthew Barney'), function (error, response, body) {
+request(getArt('artists', 'Matthew Barney'), (error, response, body) => {
   if (error) console.log('error:', error);
   console.log(chalkAnimation.rainbow(body));
 });
