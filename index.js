@@ -15,6 +15,6 @@ const getArt = (type, term) => {
 };
 
 request(getArt('artists', 'Matthew Barney'), (error, response, body) => {
-  if (error) console.log('error:', error);
+  if (error) console.log(error);
   console.log(chalkAnimation.rainbow(body));
 });
