@@ -1,5 +1,6 @@
 const chalkAnimation = require('chalk-animation');
-const request = require('request');
+const Promise = require('bluebird');
+const request = Promise.promisify(require('request'));;
 const urlSlug = require('url-slug');
 
 const sfmomaToken = require('./sfmomaToken');
@@ -14,7 +15,10 @@ const getArt = (type, term) => {
   }
 };
 
-request(getArt('artists', 'Matthew Barney'), (error, response, body) => {
-  if (error) console.log(error);
-  console.log(chalkAnimation.rainbow(body));
-});
+request(getArt('artists', 'Matthew Barney'))
+  .then((response) => {
+    console.log(chalkAnimation.rainbow(response.body));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
